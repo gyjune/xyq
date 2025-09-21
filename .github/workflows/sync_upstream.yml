@@ -1,0 +1,40 @@
+name: Weekly Sync (Safe Merge)
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  sync-upstream:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add upstream https://github.com/xyq254245/xyqonlinerule.git || true
+
+      - name: Sync changes
+        run: |
+          git fetch upstream
+          CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          
+          # 尝试普通合并
+          if git merge upstream/$CURRENT_BRANCH --no-edit; then
+            echo "合并成功"
+            git push origin $CURRENT_BRANCH
+          else
+            # 如果合并冲突，创建PR而不是强制推送
+            echo "发现合并冲突，请手动处理"
+            # 这里可以添加通知逻辑，比如发送邮件或Slack消息
+            exit 1
+          fi

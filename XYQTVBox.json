@@ -1,6 +1,6 @@
 {
     "wallpaper": "https://wp.upx8.com/api.php",
-    "spider": "./custom_spider.jar;md5;446d94b58ad05ce8ec0abf4b9f1c8abd",
+    "spider": "./custom_spider.jar;md5;82ed8c34c7655ea24e8c01e51a74e017",
     "lives": [
         {
           "name": "本地live文件",
@@ -14,7 +14,7 @@
           "name": "BMCH",
           "type":"0",
           "pass": true,
-          "url": "https://proxy.gitwarp.com/https://raw.githubusercontent.com/big-mouth-cn/tv/main/iptv-ok.m3u",
+          "url": "https://gh.halonice.com/https:/raw.githubusercontent.com/big-mouth-cn/tv/main/iptv-ok.m3u",
           "epg": "https://epg.v1.mk/json?ch={name}&date={date}",     
           "logo": "https://epg.v1.mk/logo/{name}.png"
         },
@@ -25,13 +25,7 @@
           "url": "https://ghfile.geekertao.top/https://raw.githubusercontent.com/TianmuTNT/iptv/main/iptv.txt",
           "epg": "https://epg.v1.mk/json?ch={name}&date={date}",     
           "logo": "https://epg.v1.mk/logo/{name}.png"
-        },
-        {
-	      "name": "fanmingming",
-	      "type":"0",
-        "pass": true,
-	      "url": "https://live.fanmingming.cn/tv/m3u/ipv6.m3u"
-    	}
+        }
         
     ],
     "sites": [
@@ -248,6 +242,17 @@
         "regex": [
             "16.63",
             "17.66"
+        ]
+    },
+    {
+        "hosts": [
+            "dytt-hot"
+        ],
+        "name": "dytt",
+        "regex": [
+            "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:1\\.800000,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+            "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:3\\.600000,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+            "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:6\\.566667,[\\s\\S]*?#EXT-X-DISCONTINUITY"
         ]
     },
     {
